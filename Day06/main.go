@@ -14,7 +14,10 @@ func main() {
 func challenge(length int) int {
 	input, err := os.Open("Day06/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	s.Scan()

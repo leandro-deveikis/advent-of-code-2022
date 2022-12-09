@@ -14,7 +14,10 @@ func main() {
 func challenge01() {
 	input, err := os.Open("Day03/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	var sum int32 = 0
@@ -29,7 +32,10 @@ func challenge01() {
 func challenge02() {
 	input, err := os.Open("Day03/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	var sum int32 = 0

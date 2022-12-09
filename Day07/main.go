@@ -30,7 +30,10 @@ type file struct {
 func challenge() {
 	input, err := os.Open("Day07/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	rootDir := &dir{name: "/"}
 	currentDir := rootDir
@@ -126,7 +129,7 @@ func isBetterAnswer(size int, currentAnswer int, neededToDeleteAtLeast int) bool
 }
 
 func findAnswerChallenge1(rootDir *dir) int {
-	// find all of the directories with a total size of at most 100000,
+	// find all the directories with a total size of at most 100000,
 	// then calculate the sum of their total sizes
 	sum := 0
 	// we do this to skip the root dir

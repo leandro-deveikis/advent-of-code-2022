@@ -17,7 +17,10 @@ func main() {
 func challenge1() {
 	input, err := os.Open("input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	max, current := 0, 0
@@ -41,7 +44,10 @@ func challenge1() {
 func challenge2() {
 	input, err := os.Open("input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	current := 0

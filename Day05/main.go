@@ -28,7 +28,10 @@ func challenge(shouldReverse bool) string {
 	//
 	input, err := os.Open("Day05/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	for s.Scan() {

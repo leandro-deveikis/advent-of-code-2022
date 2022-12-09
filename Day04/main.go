@@ -42,7 +42,10 @@ func (s section) hasSomeOverlap(s2 section) bool {
 func challenge01() {
 	input, err := os.Open("Day04/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	count := 0
@@ -58,7 +61,10 @@ func challenge01() {
 func challengeHigherFunctions(f func(s section, s2 section) bool) int {
 	input, err := os.Open("Day04/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	count := 0
@@ -74,7 +80,10 @@ func challengeHigherFunctions(f func(s section, s2 section) bool) int {
 func challenge02() {
 	input, err := os.Open("Day04/input")
 	check(err)
-	defer input.Close()
+	defer func() {
+		err := input.Close()
+		check(err)
+	}()
 
 	s := bufio.NewScanner(input)
 	count := 0
